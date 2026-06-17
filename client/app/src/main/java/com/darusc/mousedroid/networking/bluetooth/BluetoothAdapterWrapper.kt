@@ -5,7 +5,6 @@ import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
 import android.content.Context
-import android.os.Build
 import androidx.annotation.RequiresPermission
 
 /**
@@ -29,7 +28,7 @@ class BluetoothAdapterWrapper private constructor(context: Context) {
         }
     }
 
-    private val _adapter: BluetoothAdapter
+    private val _adapter: BluetoothAdapter = (context.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager).adapter
     val adapter: BluetoothAdapter
         get() = _adapter
 
@@ -41,12 +40,5 @@ class BluetoothAdapterWrapper private constructor(context: Context) {
         get() = _adapter.bondedDevices
 
     init {
-        _adapter = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            // BluetoothAdapter.getDefaultAdapter() is deprecated on version >= 31
-            val bluetoothManager = context.getSystemService(BluetoothManager::class.java)
-            bluetoothManager!!.adapter
-        } else {
-            BluetoothAdapter.getDefaultAdapter()
-        }
     }
 }

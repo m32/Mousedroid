@@ -14,7 +14,7 @@ import com.google.android.material.button.MaterialButton
 fun Fragment.showPopupDialog(@LayoutRes fragmentId: Int): View? {
     val rootView = view ?: return null
 
-    val pView = layoutInflater.inflate(fragmentId, null)
+    val pView = layoutInflater.inflate(fragmentId, rootView as? android.view.ViewGroup, false)
     val popup = PopupWindow(
         pView,
         ConstraintLayout.LayoutParams.MATCH_PARENT,

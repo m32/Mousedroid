@@ -1,7 +1,6 @@
 package com.darusc.mousedroid
 
 import android.Manifest
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -20,8 +19,6 @@ import com.darusc.mousedroid.networking.bluetooth.BluetoothAdapterWrapper
 
 class MainActivity : AppCompatActivity() {
 
-    private val TAG = "Mousedroid"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -37,17 +34,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         BluetoothAdapterWrapper.initialize(applicationContext)
-        //BatteryMonitor.getInstance().start(applicationContext)
+        BatteryMonitor.getInstance().start(applicationContext)
     }
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
-        grantResults: IntArray
+        grantResults: IntArray,
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if(requestCode == 1000) {
-            if(grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+        if (requestCode == 1000) {
+            if (grantResults.isEmpty() || (grantResults[0] != PackageManager.PERMISSION_GRANTED)) {
                 AlertDialog.Builder(this)
                     .setTitle("Bluetooth Permission Required")
                     .setMessage("Please enable bluetooth permission in settings and restart the app.")

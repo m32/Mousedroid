@@ -16,7 +16,6 @@ import com.darusc.mousedroid.viewmodels.TouchpadViewModel
 
 class Touchpad : Fragment() {
 
-    private val TAG = "Mousedroid"
     private lateinit var binding: FragmentTouchpadBinding
 
     private val viewModel: TouchpadViewModel by activityViewModels()
@@ -24,7 +23,7 @@ class Touchpad : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_touchpad, container, false)
         binding.viewmodel = viewModel
@@ -61,10 +60,10 @@ class Touchpad : Fragment() {
 
             if(currentOrientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
                 requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-                updateLayoutForOrientation(false)
+                updateLayoutForOrientation(landscape = false)
             } else {
                 requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-                updateLayoutForOrientation(true)
+                updateLayoutForOrientation(landscape = true)
             }
         }
     }

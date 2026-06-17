@@ -28,25 +28,20 @@ class KeyboardViewModel : BaseViewModel<KeyboardViewModel.State, KeyboardViewMod
     var activeKeyboardLayout: KeyboardLayout = KeyboardLayoutUS()
 
     fun setKeyboardLayout(layout: String): Boolean {
-        val layoutClass = layoutMap[layout]
+        val layoutClass = layoutMap[layout] ?: return false
 
-        if (layoutClass != null) {
-            try {
-                activeKeyboardLayout = layoutClass.getDeclaredConstructor().newInstance()
-                return true
-            } catch (e: Exception) {
-                return false
-            }
+        return try {
+            activeKeyboardLayout = layoutClass.getDeclaredConstructor().newInstance()
+            true
+        } catch (_: Exception) {
+            false
         }
-
-        return false
     }
 
     fun handleKeypress(chars: CharArray) {
         for (char in chars) {
-            val mapping = activeKeyboardLayout.getMapping(char)
-            if (mapping != null) {
-                connectionManager.send(InputEvent.KeyPress(mapping))
+            activeKeyboardLayout.getMapping(char)?.let {
+                connectionManager.send(InputEvent.KeyPress(it))
             }
         }
     }

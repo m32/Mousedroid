@@ -19,10 +19,8 @@ class TCPConnection(
     ipAddress: String,
     port: Int,
     private val isOverAdb: Boolean,
-    private val listener: Listener
+    private val listener: Listener,
 ) : Connection() {
-
-    private val TAG = "Mousedroid"
 
     override val maxPacketSize = 65472
 
@@ -40,7 +38,7 @@ class TCPConnection(
             outputStream = socket.getOutputStream()
             inputStream = socket.getInputStream()
 
-            Log.d(TAG, "TCP Connected to $ipAddress:$port")
+            Log.d("Mousedroid", "TCP Connected to $ipAddress:$port")
 
             thread = Thread { startReceiveBytesLoop() }
             thread.start()
@@ -70,13 +68,13 @@ class TCPConnection(
             try {
                 val bytes = inputStream?.read(buf)
                 // When connected over ADB stream end of file might be reached
-                if(isOverAdb && bytes == -1) {
+                if (isOverAdb && (bytes == -1)) {
                     onDisconnected()
                     break
                 }
                 listener.onBytesReceived(buf, bytes ?: 0)
             } catch (e: Exception) {
-                Log.e(TAG, "Error while reading. Closing socket. ${e.message}")
+                Log.e("Mousedroid", "Error while reading. Closing socket. ${e.message}")
                 onDisconnected()
                 break
             }

@@ -2,7 +2,6 @@ package com.darusc.mousedroid.viewmodels
 
 import android.Manifest
 import android.content.Context
-import android.os.Build
 import androidx.annotation.IdRes
 import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
@@ -26,7 +25,6 @@ class ConnectionViewModel :
     }
 
     sealed class Event : BaseViewModel.Event() {
-        data class Navigate(@IdRes val id: Int) : Event()
         object NavigateToInput : Event()
         object NavigateToMain : Event()
         data class NavigateToDeviceList(val mode: Connection.Mode) : Event()

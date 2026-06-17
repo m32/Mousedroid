@@ -21,7 +21,7 @@ class KeyboardLayoutFR : KeyboardLayout() {
         '\u001B' to listOf(Key(Keycode.MOD_NONE, Keycode.KEY_ESC)),
 
         // --- Space ---
-        ' ' to Key(Keycode.MOD_NONE, Keycode.KEY_SPACE),
+        ' ' to listOf(Key(Keycode.MOD_NONE, Keycode.KEY_SPACE)),
 
         // --- Number Row (Symbols first, Numbers with Shift) ---
         '&' to listOf(Key(Keycode.MOD_NONE, Keycode.KEY_1)),
@@ -223,5 +223,5 @@ class KeyboardLayoutFR : KeyboardLayout() {
             Key(Keycode.MOD_LEFT_SHIFT, Keycode.KEY_LEFT_BRACE),
             Key(Keycode.MOD_LEFT_SHIFT, Keycode.KEY_U)
         )
-    ) as Map<Char, List<Key>>
+    )
 }

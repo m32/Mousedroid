@@ -1,8 +1,6 @@
 package com.darusc.mousedroid.fragments
 
 import android.content.Context
-import android.inputmethodservice.InputMethodService
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -10,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -121,7 +118,7 @@ class Input: Fragment() {
                                 binding.navigation
                                     .getHeaderView(0)
                                     .findViewById<TextView>(R.id.connectionStatus)
-                                    .text = "Connected to ${it.hostName}"
+                                    .text = getString(R.string.connected_to, it.hostName)
                             }
                             else -> {}
                         }
@@ -137,11 +134,11 @@ class Input: Fragment() {
                                 val pview = showPopupDialog(R.layout.connection_disconnected_fragment)
                                 pview?.apply {
                                     if(it.connectionMode == Connection.Mode.BLUETOOTH) {
-                                        findViewById<TextView>(R.id.subtitle).text = "Bluetooth connection to ${it.hostName} was terminated"
-                                        findViewById<TextView>(R.id.description).text = "Host device turned bluetooth off or disconnected this device"
+                                        findViewById<TextView>(R.id.subtitle).text = getString(R.string.bluetooth_connection_terminated, it.hostName)
+                                        findViewById<TextView>(R.id.description).text = getString(R.string.bluetooth_terminated_description)
                                     } else {
-                                        findViewById<TextView>(R.id.subtitle).text = "${it.connectionMode.name} Connection to Mousedroid server was interrupted."
-                                        findViewById<TextView>(R.id.description).text = "Make sure the server is still ON and ADB/WIFI is active."
+                                        findViewById<TextView>(R.id.subtitle).text = getString(R.string.connection_interrupted, it.connectionMode.name)
+                                        findViewById<TextView>(R.id.description).text = getString(R.string.connection_interrupted_description)
                                     }
                                 }
                             }
@@ -149,11 +146,11 @@ class Input: Fragment() {
                                 val pview = showPopupDialog(R.layout.connection_failed_fragment)
                                 pview?.apply {
                                     if(it.connectionMode == Connection.Mode.BLUETOOTH) {
-                                        findViewById<TextView>(R.id.subtitle).text = "Bluetooth connection failed"
-                                        findViewById<TextView>(R.id.description).text = "Make sure the device is on"
+                                        findViewById<TextView>(R.id.subtitle).text = getString(R.string.bluetooth_connection_failed)
+                                        findViewById<TextView>(R.id.description).text = getString(R.string.bluetooth_failed_description)
                                     } else {
-                                        findViewById<TextView>(R.id.subtitle).text = "Connection to Mousedroid server failed"
-                                        findViewById<TextView>(R.id.description).text = "To connect over WIFI make sure you are on the same network as the computer.\nTo connect over USB make sure ADB is on and debugging is enabled.\nMake sure Mousedroid server is allowed through the firewall. "
+                                        findViewById<TextView>(R.id.subtitle).text = getString(R.string.server_connection_failed)
+                                        findViewById<TextView>(R.id.description).text = getString(R.string.server_failed_description)
                                     }
                                 }
                             }
@@ -204,7 +201,7 @@ class Input: Fragment() {
         binding.hiddenInput.requestFocus()
 
         val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.showSoftInput(binding.hiddenInput, InputMethodManager.SHOW_FORCED)
+        imm.showSoftInput(binding.hiddenInput, 0)
     }
 
     private fun closeSoftKeyboard() {

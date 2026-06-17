@@ -6,10 +6,8 @@ import android.widget.EditText
 
 class KeyboardInputWatcher(
     private val editText: EditText,
-    private val sendInputCallback: (CharArray) -> Unit
+    private val sendInputCallback: (CharArray) -> Unit,
 ): TextWatcher {
-
-    private val TAG = "Mousedroid"
 
     private var ignoreChange = false
 
@@ -23,7 +21,7 @@ class KeyboardInputWatcher(
         if(!ignoreChange) {
             if(lengthAfter < lengthBefore){
                 sendInputCallback(charArrayOf(127.toChar())) // DEL
-                if(start == 1 && lengthAfter == 0){
+                if ((start == 1) && (lengthAfter == 0)) {
                     reset()
                 }
             }

@@ -17,13 +17,6 @@ class BatteryMonitor {
                 return instance ?: BatteryMonitor().also { instance = it }
             }
         }
-
-        fun getBatteryLevel(context: Context): Int {
-            val bm = context.getSystemService(Context.BATTERY_SERVICE) as BatteryManager
-            val level = bm.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
-
-            return level
-        }
     }
 
     interface Listener {
@@ -37,8 +30,8 @@ class BatteryMonitor {
         override fun onReceive(context: Context, intent: Intent) {
             val level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1)
             val scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1)
-            if (level != -1 && scale != -1) {
-                val pct = (level * 100 / scale.toFloat()).toInt()
+            if ((level != -1) && (scale != -1)) {
+                val pct = ((level * 100) / scale.toFloat()).toInt()
                 if (pct != lastReportedLevel) {
                     listeners.forEach { it.onBatteryPercentChanged(pct) }
                     lastReportedLevel = pct
@@ -49,10 +42,6 @@ class BatteryMonitor {
 
     fun addListener(listener: Listener) {
         listeners.add(listener)
-    }
-
-    fun removeListener(listener: Listener) {
-        listeners.remove(listener)
     }
 
     fun start(context: Context) {

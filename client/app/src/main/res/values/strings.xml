@@ -4,4 +4,13 @@
     <string name="connectionFailedWIFI">Make sure the server is open on the computer and you are on the same network.</string>
     <string name="connectionLost">Server stopped responding!</string>
     <string name="connectionFailed">Connection failed!</string>
+    <string name="connected_to">Connected to %1$s</string>
+    <string name="bluetooth_connection_terminated">Bluetooth connection to %1$s was terminated</string>
+    <string name="bluetooth_terminated_description">Host device turned bluetooth off or disconnected this device</string>
+    <string name="connection_interrupted">%1$s Connection to Mousedroid server was interrupted.</string>
+    <string name="connection_interrupted_description">Make sure the server is still ON and ADB/WIFI is active.</string>
+    <string name="bluetooth_connection_failed">Bluetooth connection failed</string>
+    <string name="bluetooth_failed_description">Make sure the device is on</string>
+    <string name="server_connection_failed">Connection to Mousedroid server failed</string>
+    <string name="server_failed_description">To connect over WIFI make sure you are on the same network as the computer.\nTo connect over USB make sure ADB is on and debugging is enabled.\nMake sure Mousedroid server is allowed through the firewall. </string>
 </resources>
