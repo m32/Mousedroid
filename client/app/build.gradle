@@ -1,12 +1,10 @@
 plugins {
     id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
-    id 'kotlin-kapt'
 }
 
 android {
-    namespace 'com.darusc.mousedroid'
-    compileSdk 37
+    namespace = 'com.darusc.mousedroid'
+    compileSdk = 37
 
     defaultConfig {
         applicationId "com.darusc.mousedroid"
@@ -30,22 +28,17 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = '17'
-    }
-
     dependenciesInfo {
         includeInApk = false
         includeInBundle = false
     }
 
     buildFeatures {
-        dataBinding true
+        dataBinding = true
     }
 }
 
 dependencies {
-
     implementation 'com.google.code.gson:gson:2.14.0'
     implementation 'androidx.core:core-ktx:1.19.0'
     implementation 'androidx.appcompat:appcompat:1.7.1'
