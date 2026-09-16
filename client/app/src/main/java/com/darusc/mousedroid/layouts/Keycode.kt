@@ -30,6 +30,7 @@ object Keycode {
     const val MOD_RIGHT_SHIFT   = 0x20.toByte()
     const val MOD_RIGHT_ALT     = 0x40.toByte()
     const val MOD_RIGHT_GUI     = 0x80.toByte()
+    const val MOD_RIGHT_ALT_LEFT_SHIFT = 0x42.toByte()
 
     /**
      * HID usage ids

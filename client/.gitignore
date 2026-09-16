@@ -3,4 +3,5 @@ app/build
 app/release
 .gradle
 .idea
+.kotlin
 local.properties

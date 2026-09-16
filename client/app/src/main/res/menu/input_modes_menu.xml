@@ -18,10 +18,14 @@
                     android:icon="@drawable/ic_baseline_keyboard_24"
                     android:title="Keyboard" />
                 <item
+                    android:id="@+id/mode_gamepad"
+                    android:icon="@drawable/ic_baseline_gamepad_24"
+                    android:title="Gamepad" />
+                <item
                     android:id="@+id/mode_change_layout"
+                    android:checkable="false"
                     android:icon="@drawable/ic_language"
-                    android:title="Layout: US English"
-                    android:checkable="false"/>
+                    android:title="Layout: Polish" />
             </group>
         </menu>
     </item>

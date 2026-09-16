@@ -3,6 +3,7 @@ package com.darusc.mousedroid.viewmodels
 import com.darusc.mousedroid.layouts.KeyboardLayout
 import com.darusc.mousedroid.layouts.languages.KeyboardLayoutES
 import com.darusc.mousedroid.layouts.languages.KeyboardLayoutFR
+import com.darusc.mousedroid.layouts.languages.KeyboardLayoutPL
 import com.darusc.mousedroid.layouts.languages.KeyboardLayoutRO
 import com.darusc.mousedroid.layouts.languages.KeyboardLayoutUS
 import com.darusc.mousedroid.mkinput.InputEvent
@@ -16,6 +17,7 @@ class KeyboardViewModel : BaseViewModel<KeyboardViewModel.State, KeyboardViewMod
     private val connectionManager = ConnectionManager.getInstance()
 
     private val layoutMap: Map<String, Class<out KeyboardLayout>> = mapOf(
+        KeyboardLayoutPL.NAME to KeyboardLayoutPL::class.java,
         KeyboardLayoutUS.NAME to KeyboardLayoutUS::class.java,
         KeyboardLayoutES.NAME to KeyboardLayoutES::class.java,
         KeyboardLayoutFR.NAME to KeyboardLayoutFR::class.java,
@@ -25,7 +27,7 @@ class KeyboardViewModel : BaseViewModel<KeyboardViewModel.State, KeyboardViewMod
     val layouts: Set<String>
         get() = layoutMap.keys
 
-    var activeKeyboardLayout: KeyboardLayout = KeyboardLayoutUS()
+    var activeKeyboardLayout: KeyboardLayout = KeyboardLayoutPL()
 
     fun setKeyboardLayout(layout: String): Boolean {
         val layoutClass = layoutMap[layout] ?: return false
