@@ -49,7 +49,11 @@ class BluetoothConnection(
     private val sdp = BluetoothHidDeviceAppSdpSettings(
         "Mousedroid", "Android HID", "Mousedroid",
         BluetoothHidDevice.SUBCLASS1_COMBO,
-        HID_REPORT_DESC
+        HID_REPORT_KEYBOARD_DESC
+        +HID_REPORT_MOUSE_DESC
+        +HID_REPORT_MEDIA_DESC
+        //+HID_REPORT_BATTERY_DESC
+        +HID_REPORT_GAMEPAD_DESC
     )
 
     /**

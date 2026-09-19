@@ -90,6 +90,11 @@ class Input: Fragment() {
                     closeSoftKeyboard()
                     replaceChildFragment(Numpad())
                 }
+                R.id.mode_gamepad -> {
+                    item.isChecked = true
+                    closeSoftKeyboard()
+                    replaceChildFragment(Xbox())
+                }
                 R.id.mode_keyboard -> {
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                     openSoftKeyboard()

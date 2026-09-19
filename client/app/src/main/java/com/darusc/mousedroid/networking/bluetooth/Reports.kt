@@ -54,3 +54,22 @@ class BatteryReport(
     byteArrayOf(percentage.toByte()),
     REPORT_ID_BATTERY
 )
+
+class XboxReport(
+    buttons: Int,
+    lx: Int,
+    ly: Int,
+    rx: Int,
+    ry: Int
+): HIDReport(
+    byteArrayOf(
+        (buttons and 0xff).toByte(),
+        ((buttons shr 8) and 0xff).toByte(),
+        lx.toByte(),
+        ly.toByte(),
+        rx.toByte(),
+        ry.toByte(),
+        0
+    ),
+    REPORT_ID_GAMEPAD
+)

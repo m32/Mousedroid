@@ -9,6 +9,7 @@ import com.darusc.mousedroid.networking.bluetooth.HIDReport
 import com.darusc.mousedroid.networking.bluetooth.KeyboardReport
 import com.darusc.mousedroid.networking.bluetooth.MediaReport
 import com.darusc.mousedroid.networking.bluetooth.MouseReport
+import com.darusc.mousedroid.networking.bluetooth.XboxReport
 import kotlin.experimental.and
 
 /**
@@ -33,6 +34,7 @@ private object RawSocketEvents {
     const val SCROLL_H: Byte = 0x08
     const val ZOOM: Byte = 0x09
     const val MEDIA: Byte = 0x0A
+    const val XBOX: Byte = 0x0B
 }
 
 private fun getMouseButtonHIDCode(button: InputEvent.MouseButton): Byte {
@@ -146,6 +148,11 @@ fun InputEvent.toHIDReport(): Array<HIDReport> {
         is InputEvent.BatteryEvent -> {
             arrayOf(BatteryReport(this.percentage))
         }
+
+        is InputEvent.XboxEvent -> {
+            // TODO: Implement proper HID report for Gamepad
+            arrayOf(XboxReport(this.buttons, this.lx, this.ly, this.rx, this.ry))
+        }
     }
 }
 
@@ -203,5 +210,21 @@ fun InputEvent.toSocketReport(): Array<ByteArray> {
         }
 
         is InputEvent.BatteryEvent -> { socketReport() }
+
+        is InputEvent.XboxEvent -> {
+            socketReport(
+                RawSocketEvents.XBOX,
+                (this.buttons and 0xFF).toByte(),
+                ((this.buttons shr 8) and 0xFF).toByte(),
+                (this.lx and 0xFF).toByte(),
+                ((this.lx shr 8) and 0xFF).toByte(),
+                (this.ly and 0xFF).toByte(),
+                ((this.ly shr 8) and 0xFF).toByte(),
+                (this.rx and 0xFF).toByte(),
+                ((this.rx shr 8) and 0xFF).toByte(),
+                (this.ry and 0xFF).toByte(),
+                ((this.ry shr 8) and 0xFF).toByte()
+            )
+        }
     }
 }

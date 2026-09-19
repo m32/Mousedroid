@@ -12,14 +12,14 @@ sealed class InputEvent {
     }
 
     enum class MediaAction {
-        PREVIOUS,
-        PLAY_PAUSE,
-        NEXT,
         FORWARD,
         REPLAY,
+        NEXT,
+        PREVIOUS,
+        PLAY_PAUSE,
+        VOLUME_MUTE,
         VOLUME_DOWN,
         VOLUME_UP,
-        VOLUME_MUTE
     }
 
     data class MouseMove(val dx: Int, val dy: Int, val button: MouseButton = MouseButton.NONE) : InputEvent()
@@ -34,4 +34,6 @@ sealed class InputEvent {
     data class MediaEvent(val action: MediaAction): InputEvent()
 
     data class BatteryEvent(val percentage: Int): InputEvent()
+
+    data class XboxEvent(val buttons: Int, val lx: Int, val ly: Int, val rx: Int, val ry: Int) : InputEvent()
 }
