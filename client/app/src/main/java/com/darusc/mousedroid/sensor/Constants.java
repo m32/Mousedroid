@@ -29,11 +29,6 @@ public class Constants {
     public static final int BUTTON_RS_BIT = 12;
     public static final int BUTTON_LS_BIT = 11;
 
-    public static final double JOYSTICK_RANGE_NUM = 127;
-    public static int VibrationRateBtn = 40;
-    public static int VibrationRateGame = 100;
-    public static final float ns2s = 1.0f / 1000000000.0f;
     public static final int loopRate = 10;
-    public static final Long fpsRate = 10L;
 }
 

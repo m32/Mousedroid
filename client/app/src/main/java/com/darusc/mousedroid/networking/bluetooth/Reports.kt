@@ -67,8 +67,10 @@ class XboxReport(
         ((buttons shr 8) and 0xff).toByte(),
         lx.toByte(),
         ly.toByte(),
-        rx.toByte(),
-        ry.toByte(),
+        (rx and 0xff).toByte(),
+        ((rx shr 8) and 0xff).toByte(),
+        (ry and 0xff).toByte(),
+        ((ry shr 8) and 0xff).toByte(),
         0
     ),
     REPORT_ID_GAMEPAD
