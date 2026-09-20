@@ -64,13 +64,13 @@ class Xbox : Fragment() {
         button.setOnTouchListener { v, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
-                    v.performClick()
                     xbutton = xbutton or (1 shl bit)
                     send = true
                     true // Return true to continue tracking the gesture
                 }
                 MotionEvent.ACTION_UP -> {
                     // Finger released
+                    v.performClick()
                     xbutton = xbutton and (1 shl bit).inv()
                     send = true
                     // Execute release code here
