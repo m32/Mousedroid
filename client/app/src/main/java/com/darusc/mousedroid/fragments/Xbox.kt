@@ -114,8 +114,8 @@ class Xbox : Fragment() {
 
         binding.rightJoystickView.setOnMoveListener({ angle, strength ->
             // 0 <= x <= 1023
-            xrx = (512 + strength * cos(angle) * 512).toInt()
-            xry = (512 + strength * sin(angle) * 512).toInt()
+            xrx = (511 + strength * cos(angle) * 512).toInt()
+            xry = (511 + strength * sin(angle) * 512).toInt()
             send = true
         }, SensorConstants.loopRate)
 
